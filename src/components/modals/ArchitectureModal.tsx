@@ -15,8 +15,8 @@ export function ArchitectureModal({ isOpen, onClose }: ArchitectureModalProps) {
         <div className="flex items-center justify-between pb-4 border-b border-slate-800">
           <div>
             <h2 className="text-xl font-bold text-slate-100 flex items-center gap-2">
-              <Shield className="w-5 h-5 text-cyan-400" />
-              CyberQuant AI Architecture & Data Pipeline
+              <Shield className="w-5 h-5 text-emerald-400" />
+              ArthaRisk Architecture & Data Pipeline
             </h2>
             <p className="text-xs text-slate-400 mt-1">
               End-to-end telemetry ingestion, quantitative modeling, Monte Carlo simulation, and investment optimization.

@@ -115,65 +115,68 @@ export function RiskEnginePage({
   ];
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-6 font-mono">
       {/* Title */}
       <div>
         <div className="flex items-center gap-2 text-xs text-slate-400">
-          <span>Continuous Quantification Engine</span>
+          <span className="text-emerald-400 font-bold">[ENGINE_STATUS: ONLINE]</span>
           <span aria-hidden="true">·</span>
-          <span className="text-cyan-400 font-mono">Mathematical Rigor & Telemetry</span>
+          <span className="text-cyan-400">MONTE_CARLO_TELEMETRY</span>
         </div>
-        <h1 className="text-2xl font-bold text-white mt-1">
-          Technical Telemetry & Asset Risk Drill-Down
+        <h1 className="text-xl sm:text-2xl font-bold text-white mt-1 tracking-tight">
+          // RISK_QUANT_ENGINE & ASSET_LEDGER
         </h1>
-        <p className="text-xs text-slate-400 mt-1 max-w-3xl">
-          Monitors 7 technical telemetry pipelines, calculates per-asset exploit likelihoods using EPSS/CVSS and control defense scores, and computes Expected Annual Loss (EAL).
+        <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+          Monitors 7 real-time telemetry pipelines; derives asset exploit probabilities via CVSS/EPSS and computes monetary Expected Annual Loss.
         </p>
       </div>
 
       {/* 1. Telemetry Ingestion Source Cards */}
       <div>
-        <div className="flex items-center justify-between mb-3">
-          <h2 className="text-xs font-semibold text-slate-300 uppercase tracking-wider font-mono flex items-center gap-2">
-            <Database className="w-4 h-4 text-cyan-400" />
-            Active Ingestion Connectors (7 Pipelines Connected)
+        <div className="flex items-center justify-between mb-2.5">
+          <h2 className="text-xs font-semibold text-emerald-400 uppercase tracking-wider font-mono flex items-center gap-2">
+            <Database className="w-3.5 h-3.5 text-emerald-400" />
+            [ACTIVE_INGESTION_CONNECTORS] (7 PIPELINES)
           </h2>
-          <span className="text-xs text-slate-400 font-mono">Status: All Nominal</span>
+          <span className="text-[11px] text-emerald-400 font-mono flex items-center gap-1.5">
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+            ALL_FEEDS_NOMINAL
+          </span>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2.5">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 gap-2">
           {sources.map((src) => {
             const isSyncing = syncingId === src.id;
             return (
               <div
                 key={src.id}
-                className="p-3 rounded-xl bg-slate-900/70 border border-slate-800 flex flex-col justify-between hover:border-slate-700 transition-colors"
+                className="p-3 rounded bg-[#030907] border border-emerald-500/25 flex flex-col justify-between hover:border-emerald-400 transition-colors"
               >
                 <div>
                   <div className="flex items-center justify-between mb-1">
-                    <span className="text-[10px] font-mono font-semibold text-cyan-400">{src.category}</span>
+                    <span className="text-[10px] font-mono font-semibold text-emerald-400">{src.category}</span>
                     <button
                       onClick={() => handleSyncSource(src.id)}
                       disabled={isSyncing}
-                      className="text-slate-400 hover:text-white p-0.5 rounded cursor-pointer"
+                      className="text-slate-400 hover:text-emerald-300 p-0.5 rounded cursor-pointer"
                       title="Sync Pipeline Telemetry Now"
                     >
-                      <RefreshCw className={`w-3 h-3 ${isSyncing ? 'animate-spin text-cyan-400' : ''}`} />
+                      <RefreshCw className={`w-3 h-3 ${isSyncing ? 'animate-spin text-emerald-400' : ''}`} />
                     </button>
                   </div>
                   <div className="text-xs font-semibold text-slate-200 truncate">{src.vendor}</div>
                 </div>
 
-                <div className="mt-3 pt-2 border-t border-slate-800/80">
-                  <div className="flex items-center justify-between text-[11px] font-mono">
-                    <span className="text-slate-400">Events:</span>
-                    <span className="text-white font-semibold tabular-nums">
+                <div className="mt-2.5 pt-2 border-t border-emerald-500/20">
+                  <div className="flex items-center justify-between text-[10px] font-mono">
+                    <span className="text-slate-500">EVENTS:</span>
+                    <span className="text-emerald-400 font-semibold tabular-nums">
                       {(src.recordsIngested / 1000).toFixed(1)}k
                     </span>
                   </div>
-                  <div className="flex items-center justify-between text-[10px] text-slate-400 mt-0.5">
-                    <span>Sync:</span>
-                    <span className="text-slate-300">{src.lastSync}</span>
+                  <div className="flex items-center justify-between text-[9px] text-slate-500 mt-0.5">
+                    <span>SYNC:</span>
+                    <span className="text-slate-400">{src.lastSync}</span>
                   </div>
                 </div>
               </div>
@@ -183,24 +186,24 @@ export function RiskEnginePage({
       </div>
 
       {/* 2. Monte Carlo Loss Distribution Histogram */}
-      <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800">
+      <div className="p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 mb-4">
           <div>
             <div className="flex items-center gap-2">
-              <Cpu className="w-4 h-4 text-violet-400" />
-              <h2 className="text-sm font-bold text-white">Monte Carlo Loss Distribution (5,000 Iterations)</h2>
+              <Cpu className="w-4 h-4 text-emerald-400" />
+              <h2 className="text-xs font-bold text-white tracking-wider">// MONTE_CARLO_SIMULATION (5,000 RUNS)</h2>
             </div>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Empirical loss frequency curve showing Expected Annual Loss vs. 95% Tail Value at Risk
+            <p className="text-[10px] text-slate-400 mt-0.5">
+              Empirical loss frequency curve deriving Value at Risk (95% tail)
             </p>
           </div>
 
           <div className="flex items-center gap-3">
             <div className="text-right text-xs font-mono">
-              <span className="text-slate-400">VaR 95%: </span>
-              <span className="text-violet-400 font-bold">{formatRupees(monteCarloResult.var95)}</span>
-              <span className="text-slate-400 ml-2">CVaR: </span>
-              <span className="text-rose-400 font-semibold">{formatRupees(monteCarloResult.cvar95)}</span>
+              <span className="text-slate-500">VaR 95%: </span>
+              <span className="text-rose-400 font-bold">{formatRupees(monteCarloResult.var95)}</span>
+              <span className="text-slate-500 ml-2">CVaR: </span>
+              <span className="text-amber-400 font-semibold">{formatRupees(monteCarloResult.cvar95)}</span>
             </div>
             <button
               onClick={handleRunMonteCarlo}
@@ -248,81 +251,81 @@ export function RiskEnginePage({
       </div>
 
       {/* 3. Comprehensive Asset Inventory Table */}
-      <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+      <div className="p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 space-y-4">
         <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div>
-            <h2 className="text-sm font-bold text-white flex items-center gap-2">
-              <Server className="w-4 h-4 text-cyan-400" />
-              Asset Inventory & Risk Quant Ledger ({filteredAssets.length} of {assets.length} Assets)
+            <h2 className="text-xs font-bold text-white flex items-center gap-2 tracking-wider">
+              <Server className="w-3.5 h-3.5 text-emerald-400" />
+              // ASSET_INVENTORY_LEDGER [{filteredAssets.length}/{assets.length}_NODES]
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Click any row to open the mathematical derivation and dependency tree
+            <p className="text-[10px] text-slate-400 mt-0.5">
+              Click any node row to inspect formula derivation and dependency graph
             </p>
           </div>
 
           {/* Search bar */}
           <div className="flex items-center gap-2 w-full md:w-auto">
             <div className="relative flex-1 md:w-64">
-              <Search className="w-4 h-4 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+              <Search className="w-3.5 h-3.5 text-emerald-400 absolute left-3 top-1/2 -translate-y-1/2" />
               <input
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search assets, IDs, CVEs..."
-                className="w-full pl-9 pr-3 py-1.5 text-xs rounded-lg bg-slate-950 border border-slate-800 text-slate-200 placeholder-slate-500 focus:outline-none focus:border-cyan-500/50"
+                className="w-full pl-9 pr-3 py-1.5 text-xs rounded bg-[#020504] border border-emerald-500/30 text-emerald-300 placeholder-slate-600 focus:outline-none focus:border-emerald-400 font-mono"
               />
             </div>
           </div>
         </div>
 
         {/* Filter controls row */}
-        <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-slate-800 text-xs">
-          <span className="text-slate-400 mr-1 flex items-center gap-1 font-medium">
-            <Filter className="w-3.5 h-3.5" /> Filters:
+        <div className="flex flex-wrap items-center gap-2 pt-1 border-t border-emerald-500/20 text-xs">
+          <span className="text-slate-400 mr-1 flex items-center gap-1 font-semibold text-[10px] uppercase">
+            <Filter className="w-3 h-3 text-emerald-400" /> FILTERS:
           </span>
 
           {/* Business Unit Segmented Selector */}
-          <div className="flex flex-wrap items-center gap-1 p-1 bg-slate-950 rounded-lg border border-slate-800">
+          <div className="flex flex-wrap items-center gap-1 p-0.5 bg-[#020504] rounded border border-emerald-500/25">
             {businessUnits.map((bu) => (
               <button
                 key={bu}
                 onClick={() => setSelectedBU(bu)}
-                className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-colors cursor-pointer ${
+                className={`px-2 py-0.5 rounded text-[10px] font-mono transition-colors cursor-pointer ${
                   selectedBU === bu
-                    ? 'bg-cyan-500/20 text-cyan-300 font-semibold'
+                    ? 'bg-emerald-500/20 text-emerald-300 font-bold border border-emerald-500/40'
                     : 'text-slate-400 hover:text-slate-200'
                 }`}
               >
-                {bu === 'All' ? 'All Units' : bu.replace('Platform', '').replace('and Corporate IT', 'Corp IT')}
+                {bu === 'All' ? 'ALL_UNITS' : bu.replace('Platform', '').replace('and Corporate IT', 'Corp IT').toUpperCase()}
               </button>
             ))}
           </div>
 
           {/* Exposure filter */}
-          <div className="flex items-center gap-1 p-1 bg-slate-950 rounded-lg border border-slate-800 ml-auto">
+          <div className="flex items-center gap-1 p-0.5 bg-[#020504] rounded border border-emerald-500/25 ml-auto">
             <button
               onClick={() => setSelectedExposure('All')}
-              className={`px-2 py-1 rounded text-[11px] cursor-pointer ${
-                selectedExposure === 'All' ? 'bg-slate-800 text-white' : 'text-slate-400'
+              className={`px-2 py-0.5 rounded text-[10px] font-mono cursor-pointer ${
+                selectedExposure === 'All' ? 'bg-emerald-500/20 text-emerald-300 font-bold' : 'text-slate-400'
               }`}
             >
-              All Exposure
+              ALL
             </button>
             <button
               onClick={() => setSelectedExposure('Internet')}
-              className={`px-2 py-1 rounded text-[11px] cursor-pointer ${
-                selectedExposure === 'Internet' ? 'bg-amber-500/20 text-amber-300 font-semibold' : 'text-slate-400'
+              className={`px-2 py-0.5 rounded text-[10px] font-mono cursor-pointer ${
+                selectedExposure === 'Internet' ? 'bg-rose-500/20 text-rose-300 font-bold' : 'text-slate-400'
               }`}
             >
-              Internet-Facing
+              INTERNET_FACING
             </button>
             <button
               onClick={() => setSelectedExposure('Internal')}
-              className={`px-2 py-1 rounded text-[11px] cursor-pointer ${
-                selectedExposure === 'Internal' ? 'bg-slate-800 text-slate-200' : 'text-slate-400'
+              className={`px-2 py-0.5 rounded text-[10px] font-mono cursor-pointer ${
+                selectedExposure === 'Internal' ? 'bg-emerald-500/20 text-emerald-300 font-bold' : 'text-slate-400'
               }`}
             >
-              Internal Only
+              INTERNAL_ONLY
             </button>
           </div>
         </div>

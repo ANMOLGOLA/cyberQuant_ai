@@ -39,98 +39,100 @@ export function TopBar({
   ];
 
   return (
-    <header className="sticky top-0 z-40 w-full bg-[#050B18]/90 backdrop-blur-md border-b border-slate-800/80 px-4 md:px-8 py-3">
+    <header className="sticky top-0 z-40 w-full bg-[#030712]/95 backdrop-blur-md border-b border-emerald-500/25 px-3 md:px-6 py-2.5">
       <div className="max-w-7xl mx-auto flex items-center justify-between gap-4">
-        {/* Zone 1: Brand Wordmark (Single text element) */}
+        {/* Zone 1: Terminal Identity */}
         <button
           onClick={() => onSelectTab('landing')}
-          className="flex items-center gap-2.5 text-left text-white group cursor-pointer focus:outline-none"
+          className="flex items-center gap-2.5 text-left group cursor-pointer focus:outline-none"
         >
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-violet-600 flex items-center justify-center shadow-lg shadow-cyan-500/20 group-hover:scale-105 transition-transform">
-            <Shield className="w-4 h-4 text-white" />
+          <div className="w-8 h-8 rounded border border-emerald-500/50 bg-emerald-950/40 flex items-center justify-center text-emerald-400 font-mono font-bold text-sm shadow-[0_0_10px_rgba(34,197,94,0.3)] group-hover:border-emerald-400 transition-colors">
+            &gt;_
           </div>
           <div>
-            <span className="text-base font-bold tracking-tight text-white block leading-none">
-              CyberQuant<span className="text-cyan-400"> AI</span>
-            </span>
-            <span className="text-[10px] text-slate-400 font-mono tracking-wide block mt-0.5">
-              Financial Risk Intelligence
+            <div className="flex items-center gap-1.5 leading-none">
+              <span className="text-sm font-extrabold font-mono tracking-tight text-white glow-green">
+                ARTHA<span className="text-emerald-400">RISK</span>
+              </span>
+              <span className="text-[9px] px-1.5 py-0.2 rounded bg-emerald-950/80 border border-emerald-500/40 text-emerald-400 font-mono">
+                SEC_NODE
+              </span>
+            </div>
+            <span className="text-[10px] text-slate-400 font-mono tracking-wider block mt-0.5">
+              QUANT_RISK_FINANCE // INR
             </span>
           </div>
         </button>
 
-        {/* Zone 2: Navigation Links */}
-        <nav className="hidden lg:flex items-center gap-6 text-xs font-medium text-slate-300">
+        {/* Zone 2: Navigation Links in Terminal Code Style */}
+        <nav className="hidden lg:flex items-center gap-1 text-xs font-mono text-slate-300">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => onSelectTab(item.id)}
-                className={`transition-colors whitespace-nowrap py-1 cursor-pointer relative ${
+                className={`px-3 py-1 rounded transition-all cursor-pointer font-mono ${
                   isActive
-                    ? 'text-cyan-400 font-semibold'
-                    : 'text-slate-400 hover:text-slate-100'
+                    ? 'bg-emerald-500/15 text-emerald-400 border border-emerald-500/40 shadow-[0_0_10px_rgba(34,197,94,0.15)] font-bold'
+                    : 'text-slate-400 hover:text-slate-200 hover:bg-slate-900 border border-transparent'
                 }`}
               >
-                {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-cyan-400 rounded-full" />
-                )}
+                {isActive ? `> ${item.label}` : item.label}
               </button>
             );
           })}
         </nav>
 
-        {/* Zone 3: Primary Actions & Telemetry State */}
-        <div className="flex items-center gap-3">
-          {/* Telemetry ticker */}
-          <div className="hidden sm:flex items-center gap-2 text-[11px] font-mono text-slate-400 px-2.5 py-1 rounded-full bg-slate-900/80 border border-slate-800">
+        {/* Zone 3: Telemetry Stream & Primary Controls */}
+        <div className="flex items-center gap-2 sm:gap-3">
+          {/* Live stream ticker */}
+          <div className="hidden sm:flex items-center gap-2 text-[10px] font-mono text-emerald-400 px-2.5 py-1 rounded bg-slate-950 border border-emerald-500/30">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
             </span>
-            <span>Telemetry: {secondsAgo}s ago</span>
+            <span className="tracking-wider">FEED_ACTIVE: -{secondsAgo}s</span>
           </div>
 
-          {/* Org context indicator */}
-          <div className="hidden xl:flex items-center gap-1.5 text-xs text-slate-300 px-2.5 py-1 rounded-lg bg-slate-900 border border-slate-800">
-            <span className="text-slate-400">Org:</span>
-            <span className="font-semibold text-slate-200">{ORG_METRICS.name}</span>
+          {/* Org tag */}
+          <div className="hidden xl:flex items-center gap-1.5 text-[11px] font-mono text-slate-300 px-2 py-1 rounded bg-slate-950 border border-slate-800">
+            <span className="text-slate-500">TARGET:</span>
+            <span className="text-slate-300 font-medium truncate max-w-[120px]">{ORG_METRICS.name}</span>
           </div>
 
-          {/* Simulate Threat Button */}
+          {/* Threat Simulator Trigger */}
           <button
             onClick={onSimulateThreat}
-            className={`px-3 py-1.5 text-xs font-medium rounded-lg flex items-center gap-1.5 transition-all cursor-pointer ${
+            className={`px-2.5 py-1.5 text-[11px] font-mono font-semibold rounded flex items-center gap-1.5 transition-all cursor-pointer ${
               isThreatSimulated
-                ? 'bg-rose-500/20 text-rose-300 border border-rose-500/40 hover:bg-rose-500/30'
-                : 'bg-slate-800 text-amber-300 border border-amber-500/30 hover:bg-slate-700'
+                ? 'bg-rose-950/80 text-rose-300 border border-rose-500 shadow-[0_0_12px_rgba(244,63,94,0.35)] animate-pulse'
+                : 'bg-slate-900 text-amber-300 border border-amber-500/40 hover:bg-amber-950/30'
             }`}
-            title="Simulate a real-time high-severity threat event across the enterprise"
+            title="Inject active CVE-2024-21762 zero-day payload into network"
           >
             <AlertOctagon className="w-3.5 h-3.5 text-amber-400" />
             <span className="whitespace-nowrap">
-              {isThreatSimulated ? 'Reset Threat' : 'Simulate Threat'}
+              {isThreatSimulated ? '[BREACH_ACTIVE]' : '[SIM_INJECT]'}
             </span>
           </button>
 
-          {/* Architecture Modal Button */}
+          {/* Architecture Pipeline Map */}
           <button
             onClick={onOpenArchitecture}
-            className="p-1.5 text-slate-400 hover:text-white rounded-lg hover:bg-slate-800 transition-colors"
-            title="View Architecture Pipeline Diagram"
+            className="p-1.5 text-slate-400 hover:text-emerald-400 rounded bg-slate-950 border border-slate-800 hover:border-emerald-500/50 transition-colors"
+            title="Inspect Data Flow Topology"
           >
             <Activity className="w-4 h-4" />
           </button>
 
-          {/* Guided Tour Trigger */}
+          {/* Guide Tour */}
           <button
             onClick={onOpenTour}
-            className="px-3 py-1.5 text-xs font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 rounded-lg flex items-center gap-1.5 transition-colors shadow-sm cursor-pointer whitespace-nowrap"
+            className="px-3 py-1.5 text-xs font-mono font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded shadow-[0_0_12px_rgba(34,197,94,0.4)] flex items-center gap-1.5 transition-all cursor-pointer whitespace-nowrap"
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span className="hidden sm:inline">Demo Tour</span>
+            <Sparkles className="w-3.5 h-3.5 text-slate-950" />
+            <span className="hidden sm:inline">TOUR_PROT</span>
           </button>
         </div>
       </div>

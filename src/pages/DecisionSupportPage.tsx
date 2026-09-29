@@ -68,7 +68,7 @@ export function DecisionSupportPage({
   const [messages, setMessages] = useState<Array<{ sender: 'user' | 'ai'; content: string; response?: NLQueryResponse }>>([
     {
       sender: 'ai',
-      content: `Hello! I am **CyberQuant AI Copilot**. I analyze continuous telemetry from your 7 security feeds and evaluate monetary risk across all 45 enterprise assets. Ask me anything or select a prompt below:`,
+      content: `> ARTHARISK_COPILOT // TELEMETRY_INITIALIZED\nIngested 7 pipelines across 48 assets. Select an operation chip or enter a query:`,
     },
   ]);
   const [inputQuery, setInputQuery] = useState('');
@@ -162,39 +162,39 @@ export function DecisionSupportPage({
   };
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-6 font-mono">
       {/* Page Header */}
       <div>
         <div className="flex items-center gap-2 text-xs text-slate-400">
-          <span>AI Decision Intelligence</span>
+          <span className="text-emerald-400 font-bold">[COPILOT_ENGINE: ARMED]</span>
           <span aria-hidden="true">·</span>
-          <span className="text-cyan-400 font-mono">Predictive Modeling & What-If Lab</span>
+          <span className="text-cyan-400">WHAT_IF_SIMULATOR</span>
         </div>
-        <h1 className="text-2xl font-bold text-white mt-1">
-          Predictive Analytics, Copilot & Scenario Lab
+        <h1 className="text-xl sm:text-2xl font-bold text-white mt-1 tracking-tight">
+          // AI_DECISION_INTELLIGENCE & SCENARIO_LAB
         </h1>
-        <p className="text-xs text-slate-400 mt-1 max-w-3xl">
-          Simulate enterprise security investments before committing capital. Query natural language telemetry and forecast 90-day exposure trends.
+        <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+          Simulate enterprise security investments and remediation velocity before committing capital.
         </p>
       </div>
 
       {/* Top Split: Natural Language Copilot + 90-Day Forecast */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-4">
         {/* Natural Language Query Interface (7 Cols) */}
-        <div className="lg:col-span-7 p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between h-[520px]">
+        <div className="lg:col-span-7 p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 flex flex-col justify-between h-[520px]">
           <div>
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="flex items-center justify-between pb-3 border-b border-emerald-500/20">
               <div className="flex items-center gap-2">
-                <div className="w-7 h-7 rounded-lg bg-cyan-500/20 text-cyan-400 flex items-center justify-center">
+                <div className="w-7 h-7 rounded bg-[#020504] border border-emerald-500/40 text-emerald-400 flex items-center justify-center font-bold">
                   <Bot className="w-4 h-4" />
                 </div>
                 <div>
-                  <h2 className="text-xs font-bold text-white">CyberQuant AI Copilot</h2>
-                  <span className="text-[10px] text-slate-400 font-mono">Model: Gemini 3.8 Flash + Deterministic Quant</span>
+                  <h2 className="text-xs font-bold text-white tracking-wider">// AI_COPILOT_TERMINAL</h2>
+                  <span className="text-[10px] text-slate-500 font-mono">MODEL: GEMINI_3.8_FLASH + MONTE_CARLO</span>
                 </div>
               </div>
-              <span className="px-2 py-0.5 rounded text-[10px] bg-emerald-500/20 text-emerald-400 font-mono">
-                Online & Grounded
+              <span className="px-2 py-0.5 rounded text-[9px] bg-emerald-950 border border-emerald-500/40 text-emerald-400 font-mono">
+                [GROUNDED_TELEMETRY]
               </span>
             </div>
 
@@ -203,10 +203,10 @@ export function DecisionSupportPage({
               {messages.map((m, idx) => (
                 <div
                   key={idx}
-                  className={`p-3 rounded-xl ${
+                  className={`p-3 rounded ${
                     m.sender === 'user'
-                      ? 'bg-cyan-950/40 border border-cyan-500/30 text-cyan-100 ml-8'
-                      : 'bg-slate-950/80 border border-slate-800 text-slate-200 mr-4'
+                      ? 'bg-[#041410] border border-emerald-500/40 text-emerald-300 ml-8'
+                      : 'bg-[#020504] border border-emerald-500/20 text-slate-300 mr-4'
                   }`}
                 >
                   <p className="leading-relaxed whitespace-pre-wrap">{m.content}</p>

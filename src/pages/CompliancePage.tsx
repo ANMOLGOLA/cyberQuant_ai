@@ -76,49 +76,49 @@ export function CompliancePage() {
   ];
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-6 font-mono">
       {/* Title */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs text-slate-400">
-            <span>Regulatory & Compliance Audit Mapping</span>
+            <span className="text-emerald-400 font-bold">[REGULATORY_MAPPER: ARMED]</span>
             <span aria-hidden="true">·</span>
-            <span className="text-cyan-400 font-mono">Financial Gap Attribution</span>
+            <span className="text-cyan-400">PENALTY_ATTRIBUTION</span>
           </div>
-          <h1 className="text-2xl font-bold text-white mt-1">
-            Framework Compliance & Audit Readiness
+          <h1 className="text-xl sm:text-2xl font-bold text-white mt-1 tracking-tight">
+            // REGULATORY_COMPLIANCE & AUDIT_ATTESTATION
           </h1>
-          <p className="text-xs text-slate-400 mt-1 max-w-3xl">
-            Translates regulatory circulars into continuous evidence audits, connecting each compliance gap directly to quantified monetary exposure in Rupees.
+          <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+            Directly correlates compliance deficits to quantified financial risk & statutory penalty exposure.
           </p>
         </div>
 
         <button
           onClick={() => setIsReportModalOpen(true)}
-          className="px-4 py-2 text-xs font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer"
+          className="px-4 py-2 text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded border border-emerald-300 flex items-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)] cursor-pointer transition-all"
         >
-          <FileCheck className="w-4 h-4" />
-          <span>Generate Audit / Regulatory Report</span>
+          <FileCheck className="w-4 h-4 text-slate-950" />
+          <span>[GENERATE_AUDIT_REPORT]</span>
         </button>
       </div>
 
       {/* Framework Tabs Selector */}
-      <div className="flex flex-wrap items-center gap-2 p-1.5 bg-slate-900/80 rounded-xl border border-slate-800">
+      <div className="flex flex-wrap items-center gap-1.5 p-1 bg-[#020504] rounded border border-emerald-500/25">
         {COMPLIANCE_FRAMEWORKS.map((fw) => {
           const isSelected = selectedFrameworkId === fw.id;
           return (
             <button
               key={fw.id}
               onClick={() => setSelectedFrameworkId(fw.id)}
-              className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all cursor-pointer flex items-center gap-2 ${
+              className={`px-3 py-1.5 rounded text-xs font-mono transition-all cursor-pointer flex items-center gap-2 ${
                 isSelected
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 shadow-sm'
+                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold shadow-[0_0_10px_rgba(16,185,129,0.15)]'
                   : 'text-slate-400 hover:text-slate-200'
               }`}
             >
               <span>{fw.shortName}</span>
               <span className={`text-[10px] font-mono px-1.5 py-0.2 rounded ${
-                fw.overallComplianceScore >= 80 ? 'bg-emerald-500/20 text-emerald-400' : 'bg-amber-500/20 text-amber-400'
+                fw.overallComplianceScore >= 80 ? 'bg-emerald-950 border border-emerald-500/30 text-emerald-400' : 'bg-amber-950 border border-amber-500/30 text-amber-400'
               }`}>
                 {fw.overallComplianceScore.toFixed(0)}%
               </span>
@@ -128,25 +128,25 @@ export function CompliancePage() {
       </div>
 
       {/* Active Framework Overview Grid */}
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
         {/* Score & Summary */}
-        <div className="p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between">
+        <div className="p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 flex flex-col justify-between">
           <div>
             <div className="flex items-center justify-between mb-2">
-              <span className="text-xs font-mono text-cyan-400 font-semibold">{activeFramework.version}</span>
-              <span className="text-[11px] text-slate-400">{activeFramework.regulatoryBody}</span>
+              <span className="text-xs font-mono text-emerald-400 font-bold">{activeFramework.version}</span>
+              <span className="text-[10px] text-slate-500">{activeFramework.regulatoryBody}</span>
             </div>
-            <h2 className="text-base font-bold text-white mb-1">{activeFramework.name}</h2>
-            <p className="text-xs text-slate-400">
-              Evaluated across {activeFramework.totalControls} technical security controls and evidence streams.
+            <h2 className="text-sm font-bold text-white mb-1 tracking-tight">{activeFramework.name}</h2>
+            <p className="text-[10px] text-slate-400">
+              Evaluated across {activeFramework.totalControls} technical security controls & evidence streams.
             </p>
           </div>
 
-          <div className="my-6 text-center">
-            <div className="text-5xl font-extrabold font-mono text-cyan-400 tabular-nums">
+          <div className="my-5 text-center">
+            <div className="text-4xl sm:text-5xl font-black font-mono text-emerald-400 glow-green tabular-nums">
               {activeFramework.overallComplianceScore}%
             </div>
-            <span className="text-xs text-slate-400 mt-1 block font-medium">Composite Audit Posture Score</span>
+            <span className="text-[10px] text-slate-500 mt-1 block uppercase">Composite Audit Posture Score</span>
           </div>
 
           <div className="grid grid-cols-3 gap-2 text-center text-xs pt-4 border-t border-slate-800">
@@ -332,7 +332,7 @@ export function CompliancePage() {
                   2. Remediation Commitments & Timelines
                 </h4>
                 <p className="font-sans text-slate-200">
-                  A board-approved capital remediation plan totaling ₹77 Lakh has been prioritized under CyberQuant AI's Knapsack Optimizer, scheduled for 100% completion within 6 weeks.
+                  A board-approved capital remediation plan totaling ₹77 Lakh has been prioritized under ArthaRisk's Knapsack Optimizer, scheduled for 100% completion within 6 weeks.
                 </p>
               </div>
             </div>

@@ -156,7 +156,7 @@ export function computePlanComparisons(
   };
 
   const optimizedPlan = {
-    name: 'CyberQuant AI Optimized',
+    name: 'ArthaRisk Optimized',
     cost: optimizedResult.totalCost,
     riskReduction: optimizedResult.totalRiskReduction,
     residualEal: optimizedResult.residualEal,

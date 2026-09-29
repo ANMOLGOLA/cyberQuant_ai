@@ -10,9 +10,9 @@ interface DemoTourProps {
 const TOUR_STEPS = [
   {
     step: 1,
-    title: 'Welcome to CyberQuant AI',
+    title: 'Welcome to ArthaRisk',
     targetTab: 'landing',
-    content: 'Enterprises describe risk as "Low/Medium/High", leaving boards unable to make financial decisions. CyberQuant AI continuously translates technical telemetry into MONETARY exposure (Expected Annual Loss & VaR) in Indian Rupees (₹).',
+    content: 'Enterprises describe risk as "Low/Medium/High", leaving boards unable to make financial decisions. ArthaRisk continuously translates technical telemetry into MONETARY exposure (Expected Annual Loss & VaR) in Indian Rupees (₹).',
     actionText: 'Go to Executive Dashboard',
   },
   {

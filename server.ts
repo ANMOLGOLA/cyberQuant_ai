@@ -17,7 +17,7 @@ async function startServer() {
 
   // Health check route
   app.get('/api/health', (_req, res) => {
-    res.json({ status: 'healthy', platform: 'CyberQuant AI' });
+    res.json({ status: 'healthy', platform: 'ArthaRisk' });
   });
 
   // Server-side Gemini API proxy route
@@ -44,7 +44,7 @@ async function startServer() {
 
       const response = await ai.models.generateContent({
         model: 'gemini-3.8-flash',
-        contents: `You are CyberQuant AI Copilot, an enterprise cyber risk quantification and financial decision intelligence engine for "Aarav FinServe Ltd" (an Indian mid-size financial services institution).
+        contents: `You are ArthaRisk Copilot, an enterprise cyber risk quantification and financial decision intelligence engine for "Aarav FinServe Ltd" (an Indian mid-size financial services institution).
 Current Enterprise Context:
 - EAL (Expected Annual Loss): ₹${context?.eal || '4.82 Cr'}
 - Value at Risk (95% confidence): ₹${context?.var95 || '14.20 Cr'}
@@ -89,7 +89,7 @@ Guidelines:
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`[CyberQuant AI] Server running at http://0.0.0.0:${PORT}`);
+    console.log(`[ArthaRisk] Server running at http://0.0.0.0:${PORT}`);
   });
 }
 

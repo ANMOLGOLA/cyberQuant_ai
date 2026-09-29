@@ -84,7 +84,7 @@ export function BoardReportModal({
               1. Executive Financial Exposure Summary
             </h2>
             <p className="text-xs leading-relaxed text-slate-300">
-              Unlike traditional qualitative categorizations ("High/Medium/Low"), CyberQuant AI continuously measures enterprise cyber exposure in monetary terms based on real-time telemetry from 7 integrated sources. As of {currentDate}, Aarav FinServe Ltd faces an **Expected Annual Loss (EAL) of {formatRupees(metrics.totalEal)}**, with a 95% Value at Risk (VaR 95%) threshold of **{formatRupees(metrics.totalEal * 2.85)}**. Our current exposure exceeds the Board-mandated risk tolerance limit of **{formatRupees(metrics.riskAppetiteLimit)}** by **{formatRupees(Math.max(0, metrics.totalEal - metrics.riskAppetiteLimit))}**.
+              Unlike traditional qualitative categorizations ("High/Medium/Low"), ArthaRisk continuously measures enterprise cyber exposure in monetary terms based on real-time telemetry from 7 integrated sources. As of {currentDate}, Aarav FinServe Ltd faces an **Expected Annual Loss (EAL) of {formatRupees(metrics.totalEal)}**, with a 95% Value at Risk (VaR 95%) threshold of **{formatRupees(metrics.totalEal * 2.85)}**. Our current exposure exceeds the Board-mandated risk tolerance limit of **{formatRupees(metrics.riskAppetiteLimit)}** by **{formatRupees(Math.max(0, metrics.totalEal - metrics.riskAppetiteLimit))}**.
             </p>
           </div>
 

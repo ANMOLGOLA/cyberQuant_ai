@@ -67,56 +67,56 @@ export function OptimizationPage({
   const currentBudgetCr = Number((budget / 10000000).toFixed(2));
 
   return (
-    <div className="p-4 md:p-8 max-w-7xl mx-auto space-y-8">
+    <div className="p-4 md:p-6 max-w-7xl mx-auto space-y-6 font-mono">
       {/* Title */}
       <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
         <div>
           <div className="flex items-center gap-2 text-xs text-slate-400">
-            <span>Capital Optimization Engine</span>
+            <span className="text-emerald-400 font-bold">[OPTIMIZER_SOLVER: CONVERGED]</span>
             <span aria-hidden="true">·</span>
-            <span className="text-cyan-400 font-mono">0/1 Knapsack Mathematical Solver</span>
+            <span className="text-cyan-400">0/1_KNAPSACK_ROSI</span>
           </div>
-          <h1 className="text-2xl font-bold text-white mt-1">
-            Cybersecurity Investment Optimization
+          <h1 className="text-xl sm:text-2xl font-bold text-white mt-1 tracking-tight">
+            // CAPITAL_INVESTMENT_OPTIMIZATION
           </h1>
-          <p className="text-xs text-slate-400 mt-1 max-w-3xl">
-            Solves the combinatorial 0/1 knapsack problem to select the highest-ROSI portfolio of security initiatives under any fixed budget constraint.
+          <p className="text-xs text-slate-400 mt-1 max-w-2xl">
+            Solves 0/1 knapsack combinatorial optimization for maximum rupee risk reduction under your budget constraint.
           </p>
         </div>
 
         <button
           onClick={() => onOpenBoardReport(optimizationResult)}
-          className="px-4 py-2 text-xs font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 rounded-xl flex items-center gap-2 transition-all shadow-lg shadow-cyan-500/20 cursor-pointer"
+          className="px-4 py-2 text-xs font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded border border-emerald-300 flex items-center gap-2 shadow-[0_0_15px_rgba(16,185,129,0.3)] cursor-pointer transition-all"
         >
-          <FileText className="w-4 h-4" />
-          <span>Export Board Report</span>
+          <FileText className="w-4 h-4 text-slate-950" />
+          <span>[EXPORT_BOARD_REPORT]</span>
         </button>
       </div>
 
       {/* Budget Slider Controller */}
-      <div className="p-6 rounded-2xl bg-slate-900/80 border border-slate-800 space-y-4">
+      <div className="p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2">
           <div>
-            <span className="text-xs font-semibold uppercase tracking-wider text-cyan-400 font-mono">
-              Allocate Annual Security Budget Envelope
+            <span className="text-xs font-bold uppercase tracking-wider text-emerald-400 font-mono">
+              // BUDGET_ALLOCATION_ENVELOPE
             </span>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Drag slider to re-solve 0/1 knapsack and recalculate residual Expected Annual Loss.
+            <p className="text-[10px] text-slate-400 mt-0.5">
+              Drag slider to re-solve 0/1 knapsack algorithm and compute residual financial exposure.
             </p>
           </div>
 
           <div className="text-right">
-            <span className="text-2xl font-bold font-mono text-cyan-300 tabular-nums">
+            <span className="text-xl sm:text-2xl font-black font-mono text-emerald-400 glow-green tabular-nums">
               {formatRupees(budget)}
             </span>
-            <span className="text-xs text-slate-400 font-sans block">
-              {budget >= 10000000 ? `${(budget / 10000000).toFixed(2)} Crore` : `${(budget / 100000).toFixed(0)} Lakh`}
+            <span className="text-[10px] text-slate-400 font-mono block">
+              {budget >= 10000000 ? `${(budget / 10000000).toFixed(2)} Crore Envelope` : `${(budget / 100000).toFixed(0)} Lakh Envelope`}
             </span>
           </div>
         </div>
 
         {/* The Slider */}
-        <div className="pt-2">
+        <div className="pt-1">
           <input
             type="range"
             min="1000000" // ₹10 Lakh
@@ -124,31 +124,31 @@ export function OptimizationPage({
             step="1000000" // ₹10 Lakh steps
             value={budget}
             onChange={(e) => setBudget(Number(e.target.value))}
-            className="w-full accent-cyan-400 cursor-pointer h-2 bg-slate-800 rounded-lg"
+            className="w-full accent-emerald-400 cursor-pointer h-1.5 bg-[#020504] rounded border border-emerald-500/20"
           />
-          <div className="flex justify-between text-[11px] font-mono text-slate-500 mt-1.5">
-            <span>₹10 Lakh (Min)</span>
-            <span className="text-cyan-400">Current: {formatRupees(budget)}</span>
-            <span>₹10.00 Crore (Max)</span>
+          <div className="flex justify-between text-[10px] font-mono text-slate-500 mt-1">
+            <span>₹10L MIN</span>
+            <span className="text-emerald-400 font-bold">ACTIVE: {formatRupees(budget)}</span>
+            <span>₹10.00 Cr MAX</span>
           </div>
         </div>
 
         {/* Quick Presets */}
-        <div className="flex items-center gap-2 pt-2 border-t border-slate-800/80 text-xs">
-          <span className="text-slate-400 mr-1">Quick Presets:</span>
+        <div className="flex flex-wrap items-center gap-2 pt-2 border-t border-emerald-500/20 text-xs">
+          <span className="text-slate-500 text-[10px] uppercase font-semibold mr-1">PRESETS:</span>
           {[
-            { label: '₹50 Lakh', value: 5000000 },
-            { label: '₹1.00 Crore (Recommended)', value: 10000000 },
-            { label: '₹2.00 Crore', value: 20000000 },
-            { label: '₹3.50 Crore', value: 35000000 },
+            { label: '₹50 LAKH', value: 5000000 },
+            { label: '₹1.00 CR (OPTIMAL)', value: 10000000 },
+            { label: '₹2.00 CR', value: 20000000 },
+            { label: '₹3.50 CR', value: 35000000 },
           ].map((preset) => (
             <button
               key={preset.value}
               onClick={() => setBudget(preset.value)}
-              className={`px-2.5 py-1 rounded-lg text-[11px] transition-colors cursor-pointer ${
+              className={`px-2.5 py-1 rounded text-[10px] font-mono transition-colors cursor-pointer ${
                 budget === preset.value
-                  ? 'bg-cyan-500/20 text-cyan-300 border border-cyan-500/40 font-semibold'
-                  : 'bg-slate-950 text-slate-400 border border-slate-800 hover:text-slate-200'
+                  ? 'bg-emerald-500/20 text-emerald-300 border border-emerald-500/40 font-bold shadow-[0_0_10px_rgba(16,185,129,0.15)]'
+                  : 'bg-[#020504] border border-slate-800 text-slate-400 hover:text-slate-200'
               }`}
             >
               {preset.label}
@@ -158,82 +158,82 @@ export function OptimizationPage({
       </div>
 
       {/* Optimization Outcome KPIs */}
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-          <span className="text-xs text-slate-400">Selected Portfolio Spend</span>
-          <div className="text-xl font-bold font-mono text-cyan-300 mt-1">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-3 font-mono">
+        <div className="p-3.5 rounded bg-[#030907] border border-emerald-500/25">
+          <span className="text-[10px] text-slate-500 uppercase">[ALLOCATED_SPEND]</span>
+          <div className="text-lg sm:text-xl font-black font-mono text-emerald-400 glow-green mt-1">
             {formatRupees(optimizationResult.totalCost)}
           </div>
-          <span className="text-[11px] text-slate-400">
-            {((optimizationResult.totalCost / budget) * 100).toFixed(0)}% of budget utilized
+          <span className="text-[9px] text-slate-500">
+            {((optimizationResult.totalCost / budget) * 100).toFixed(0)}% budget utilized
           </span>
         </div>
 
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-          <span className="text-xs text-slate-400">Total Quantified Risk Reduction</span>
-          <div className="text-xl font-bold font-mono text-emerald-400 mt-1">
+        <div className="p-3.5 rounded bg-[#030907] border border-emerald-500/25">
+          <span className="text-[10px] text-slate-500 uppercase">[RISK_REDUCTION]</span>
+          <div className="text-lg sm:text-xl font-black font-mono text-emerald-400 glow-green mt-1">
             {formatRupees(optimizationResult.totalRiskReduction)}
           </div>
-          <span className="text-[11px] text-slate-400">EAL compressed</span>
+          <span className="text-[9px] text-emerald-400/80">EAL compressed</span>
         </div>
 
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-          <span className="text-xs text-slate-400">Residual Enterprise EAL</span>
-          <div className="text-xl font-bold font-mono text-slate-100 mt-1">
+        <div className="p-3.5 rounded bg-[#030907] border border-cyan-500/25">
+          <span className="text-[10px] text-slate-500 uppercase">[RESIDUAL_EAL]</span>
+          <div className="text-lg sm:text-xl font-black font-mono text-cyan-300 glow-cyan mt-1">
             {formatRupees(optimizationResult.residualEal)}
           </div>
-          <span className="text-[11px] text-emerald-400">
-            {metrics.totalEal > 0 ? `${((optimizationResult.totalRiskReduction / metrics.totalEal) * 100).toFixed(0)}% risk reduction` : '0%'}
+          <span className="text-[9px] text-cyan-400">
+            {metrics.totalEal > 0 ? `${((optimizationResult.totalRiskReduction / metrics.totalEal) * 100).toFixed(0)}% reduction achieved` : '0%'}
           </span>
         </div>
 
-        <div className="p-4 rounded-xl bg-slate-900/80 border border-slate-800">
-          <span className="text-xs text-slate-400">Portfolio ROSI (Return)</span>
-          <div className="text-xl font-bold font-mono text-violet-400 mt-1">
+        <div className="p-3.5 rounded bg-[#030907] border border-emerald-500/25">
+          <span className="text-[10px] text-slate-500 uppercase">[PORTFOLIO_ROSI]</span>
+          <div className="text-lg sm:text-xl font-black font-mono text-emerald-400 glow-green mt-1">
             +{optimizationResult.overallRosi}%
           </div>
-          <span className="text-[11px] text-slate-400">Net risk saved per rupee</span>
+          <span className="text-[9px] text-slate-500">Net rupee yield</span>
         </div>
       </div>
 
       {/* Diminishing Returns Frontier Curve */}
-      <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+      <div className="p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 space-y-4">
         <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <h2 className="text-sm font-bold text-white flex items-center gap-2">
-              <TrendingUp className="w-4 h-4 text-cyan-400" />
-              Investment vs. Risk Reduction Frontier Curve
+            <h2 className="text-xs font-bold text-white flex items-center gap-2 tracking-wider">
+              <TrendingUp className="w-3.5 h-3.5 text-emerald-400" />
+              // KNAPSACK_FRONTIER_CURVE [DIMINISHING RETURNS KNEE]
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Highlighting the diminishing-returns knee point and the Optimal Spend Zone
+            <p className="text-[10px] text-slate-400 mt-0.5">
+              Highlighting mathematically optimal investment zone before marginal returns decay
             </p>
           </div>
 
           <div className="flex items-center gap-4 text-xs font-mono text-slate-400">
-            <span className="flex items-center gap-1.5 text-cyan-400">
-              <span className="w-2.5 h-2.5 rounded-full bg-cyan-400"></span> Knapsack Frontier
-            </span>
             <span className="flex items-center gap-1.5 text-emerald-400">
-              <span className="w-2.5 h-2.5 rounded-full bg-emerald-400"></span> Optimal Knee (₹1.20 Cr)
+              <span className="w-2 h-2 rounded-full bg-emerald-400"></span> Knapsack Curve
+            </span>
+            <span className="flex items-center gap-1.5 text-cyan-400">
+              <span className="w-2 h-2 rounded-full bg-cyan-400"></span> Optimal Zone (₹1.20 Cr)
             </span>
           </div>
         </div>
 
-        <div className="h-64 w-full">
+        <div className="h-60 w-full">
           <ResponsiveContainer width="100%" height="100%">
             <LineChart data={chartCurveData} margin={{ top: 10, right: 20, left: -10, bottom: 10 }}>
-              <XAxis dataKey="budgetCr" stroke="#64748B" fontSize={11} tickLine={false} tickFormatter={(v) => `₹${v}Cr`} />
-              <YAxis stroke="#64748B" fontSize={11} tickLine={false} tickFormatter={(v) => `₹${v}Cr`} />
+              <XAxis dataKey="budgetCr" stroke="#475569" fontSize={10} tickLine={false} tickFormatter={(v) => `₹${v}Cr`} />
+              <YAxis stroke="#475569" fontSize={10} tickLine={false} tickFormatter={(v) => `₹${v}Cr`} />
               <Tooltip
-                contentStyle={{ backgroundColor: '#091026', borderColor: '#1E293B', borderRadius: '8px', fontSize: '11px' }}
+                contentStyle={{ backgroundColor: '#020605', borderColor: '#10B981', borderRadius: '4px', fontSize: '11px', fontFamily: 'monospace' }}
                 formatter={(val: any) => [`₹${val} Cr Reduced`, 'Risk Reduction']}
                 labelFormatter={(label) => `Budget: ₹${label} Cr`}
               />
               {/* Optimal Spend Zone Shaded Area */}
-              <ReferenceArea x1={0.8} x2={1.6} strokeOpacity={0.3} fill="#00E5FF" fillOpacity={0.06} />
+              <ReferenceArea x1={0.8} x2={1.6} strokeOpacity={0.3} fill="#10B981" fillOpacity={0.08} />
               {/* Current Budget Marker */}
-              <ReferenceLine x={currentBudgetCr} stroke="#00E5FF" strokeDasharray="3 3" label={{ value: 'Your Budget', fill: '#00E5FF', fontSize: 10, position: 'top' }} />
-              <Line type="monotone" dataKey="riskReductionCr" stroke="#00E5FF" strokeWidth={3} dot={false} activeDot={{ r: 6, fill: '#00E5FF' }} />
+              <ReferenceLine x={currentBudgetCr} stroke="#10B981" strokeDasharray="3 3" label={{ value: 'ACTIVE_BUDGET', fill: '#10B981', fontSize: 10, position: 'top' }} />
+              <Line type="monotone" dataKey="riskReductionCr" stroke="#10B981" strokeWidth={2.5} dot={false} activeDot={{ r: 5, fill: '#10B981' }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -247,75 +247,75 @@ export function OptimizationPage({
       </div>
 
       {/* Plan Comparisons: Optimal vs Manual vs Do Nothing */}
-      <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
-        <h2 className="text-sm font-bold text-white">Strategy Comparison Matrix</h2>
+      <div className="p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 space-y-4">
+        <h2 className="text-xs font-bold text-white tracking-wider">// STRATEGY_COMPARISON_MATRIX</h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {/* Do Nothing */}
-          <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between">
+          <div className="p-3.5 rounded bg-[#020504] border border-rose-500/30 flex flex-col justify-between">
             <div>
-              <span className="text-xs font-semibold text-rose-400 block mb-1">Status Quo</span>
-              <h3 className="text-sm font-bold text-slate-200">{comparisons.doNothing.name}</h3>
-              <p className="text-xs text-slate-400 mt-1">{comparisons.doNothing.description}</p>
+              <span className="text-[10px] font-bold text-rose-400 block mb-1">[STATUS_QUO]</span>
+              <h3 className="text-xs font-bold text-slate-200">{comparisons.doNothing.name}</h3>
+              <p className="text-[10px] text-slate-400 mt-1">{comparisons.doNothing.description}</p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-800 space-y-1.5 text-xs font-mono">
-              <div className="flex justify-between">
-                <span className="text-slate-400">Cost:</span>
+            <div className="mt-3 pt-2.5 border-t border-rose-900/30 space-y-1 text-xs font-mono">
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">COST:</span>
                 <span className="text-white">₹0</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Risk Saved:</span>
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">SAVED:</span>
                 <span className="text-rose-400">₹0</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Residual EAL:</span>
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">RESIDUAL_EAL:</span>
                 <span className="text-rose-400 font-bold">{formatRupees(comparisons.doNothing.residualEal)}</span>
               </div>
             </div>
           </div>
 
           {/* Manual / Ad-hoc */}
-          <div className="p-4 rounded-xl bg-slate-950/80 border border-slate-800 flex flex-col justify-between">
+          <div className="p-3.5 rounded bg-[#020504] border border-amber-500/30 flex flex-col justify-between">
             <div>
-              <span className="text-xs font-semibold text-amber-400 block mb-1">Ad-Hoc / Intuitive</span>
-              <h3 className="text-sm font-bold text-slate-200">{comparisons.manualPlan.name}</h3>
-              <p className="text-xs text-slate-400 mt-1">{comparisons.manualPlan.description}</p>
+              <span className="text-[10px] font-bold text-amber-400 block mb-1">[AD_HOC_INTUITIVE]</span>
+              <h3 className="text-xs font-bold text-slate-200">{comparisons.manualPlan.name}</h3>
+              <p className="text-[10px] text-slate-400 mt-1">{comparisons.manualPlan.description}</p>
             </div>
-            <div className="mt-4 pt-3 border-t border-slate-800 space-y-1.5 text-xs font-mono">
-              <div className="flex justify-between">
-                <span className="text-slate-400">Cost:</span>
+            <div className="mt-3 pt-2.5 border-t border-amber-900/30 space-y-1 text-xs font-mono">
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">COST:</span>
                 <span className="text-white">{formatRupees(comparisons.manualPlan.cost)}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Risk Saved:</span>
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">SAVED:</span>
                 <span className="text-amber-400">{formatRupees(comparisons.manualPlan.riskReduction)}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">ROSI:</span>
-                <span className="text-amber-400">+{comparisons.manualPlan.rosi}%</span>
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">ROSI:</span>
+                <span className="text-amber-400 font-bold">+{comparisons.manualPlan.rosi}%</span>
               </div>
             </div>
           </div>
 
-          {/* CyberQuant AI Optimized */}
-          <div className="p-4 rounded-xl bg-cyan-950/20 border border-cyan-500/40 flex flex-col justify-between shadow-lg shadow-cyan-500/10">
+          {/* ArthaRisk Optimized */}
+          <div className="p-3.5 rounded bg-[#020806] border border-emerald-500/40 flex flex-col justify-between shadow-[0_0_15px_rgba(16,185,129,0.1)]">
             <div>
-              <span className="text-xs font-semibold text-cyan-400 block mb-1">Recommended Solution</span>
-              <h3 className="text-sm font-bold text-white">{comparisons.optimizedPlan.name}</h3>
-              <p className="text-xs text-slate-300 mt-1">{comparisons.optimizedPlan.description}</p>
+              <span className="text-[10px] font-bold text-emerald-400 block mb-1">[ARTHARISK_OPTIMIZED]</span>
+              <h3 className="text-xs font-bold text-white">{comparisons.optimizedPlan.name}</h3>
+              <p className="text-[10px] text-slate-300 mt-1">{comparisons.optimizedPlan.description}</p>
             </div>
-            <div className="mt-4 pt-3 border-t border-cyan-900/60 space-y-1.5 text-xs font-mono">
-              <div className="flex justify-between">
-                <span className="text-slate-400">Cost:</span>
+            <div className="mt-3 pt-2.5 border-t border-emerald-900/50 space-y-1 text-xs font-mono">
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">COST:</span>
                 <span className="text-white">{formatRupees(comparisons.optimizedPlan.cost)}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">Risk Saved:</span>
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">SAVED:</span>
                 <span className="text-emerald-400 font-bold">{formatRupees(comparisons.optimizedPlan.riskReduction)}</span>
               </div>
-              <div className="flex justify-between">
-                <span className="text-slate-400">ROSI:</span>
-                <span className="text-cyan-300 font-bold">+{comparisons.optimizedPlan.rosi}%</span>
+              <div className="flex justify-between text-[11px]">
+                <span className="text-slate-500">ROSI:</span>
+                <span className="text-emerald-300 font-bold">+{comparisons.optimizedPlan.rosi}%</span>
               </div>
             </div>
           </div>
@@ -323,21 +323,21 @@ export function OptimizationPage({
       </div>
 
       {/* Selected Initiatives Table */}
-      <div className="p-5 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-4">
+      <div className="p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 space-y-4">
         <div className="flex items-center justify-between">
           <div>
-            <h2 className="text-sm font-bold text-white">
-              Selected Initiatives in Optimized Portfolio ({optimizationResult.selectedProjects.length} Projects)
+            <h2 className="text-xs font-bold text-white tracking-wider">
+              // SELECTED_INITIATIVES [{optimizationResult.selectedProjects.length}_PROJECTS_ARMED]
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Derived via 0/1 knapsack dynamic programming under ₹{formatRupees(budget)} budget constraint
+            <p className="text-[10px] text-slate-400 mt-0.5">
+              Algorithmically chosen for maximum financial loss suppression
             </p>
           </div>
         </div>
 
-        <div className="overflow-x-auto rounded-xl border border-slate-800">
-          <table className="w-full text-left text-xs">
-            <thead className="bg-slate-950 text-slate-400 font-semibold border-b border-slate-800">
+        <div className="overflow-x-auto rounded border border-emerald-500/20">
+          <table className="w-full text-left text-xs font-mono">
+            <thead className="bg-[#020504] text-slate-400 font-semibold border-b border-emerald-500/20">
               <tr>
                 <th className="py-2.5 px-3">Project Initiative</th>
                 <th className="py-2.5 px-3">Category</th>
