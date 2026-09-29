@@ -13,26 +13,26 @@ export function AssetDetailModal({ asset, onClose }: AssetDetailModalProps) {
   if (!asset) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md animate-in fade-in duration-150">
-      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-[#091026] border border-cyan-500/25 rounded-2xl shadow-2xl p-6 md:p-8 text-slate-100">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/85 backdrop-blur-md animate-in fade-in duration-150">
+      <div className="relative w-full max-w-3xl max-h-[92vh] overflow-y-auto bg-[#030907] border border-emerald-500/30 rounded-xl shadow-2xl p-5 md:p-7 text-slate-100 font-mono">
         {/* Top Header */}
-        <div className="flex items-start justify-between pb-4 border-b border-slate-800">
+        <div className="flex items-start justify-between pb-3.5 border-b border-emerald-500/20">
           <div>
             <div className="flex items-center gap-2 text-xs text-slate-400 mb-1">
-              <span className="font-mono text-cyan-400">{asset.id}</span>
+              <span className="font-mono text-emerald-400 font-bold">[{asset.id}]</span>
               <span aria-hidden="true">·</span>
               <span>{asset.businessUnit}</span>
               <span aria-hidden="true">·</span>
               <span className="flex items-center gap-1">
                 {asset.isInternetFacing ? (
-                  <span className="text-amber-400 flex items-center gap-1"><Globe className="w-3 h-3" /> Internet-Facing</span>
+                  <span className="text-amber-400 flex items-center gap-1"><Globe className="w-3 h-3" /> [INTERNET_FACING]</span>
                 ) : (
-                  <span className="text-slate-400 flex items-center gap-1"><Server className="w-3 h-3" /> Internal Isolated</span>
+                  <span className="text-emerald-400 flex items-center gap-1"><Server className="w-3 h-3" /> [INTERNAL_ISOLATED]</span>
                 )}
               </span>
             </div>
-            <h2 className="text-xl font-bold text-slate-100">{asset.name}</h2>
-            <p className="text-xs text-slate-400 mt-0.5">Asset Owner: {asset.owner}</p>
+            <h2 className="text-lg font-bold text-white tracking-tight">{asset.name}</h2>
+            <p className="text-[10px] text-slate-500 mt-0.5">OWNER: {asset.owner}</p>
           </div>
           <button
             onClick={onClose}

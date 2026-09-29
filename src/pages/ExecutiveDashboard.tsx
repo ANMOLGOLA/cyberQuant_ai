@@ -216,39 +216,41 @@ export function ExecutiveDashboard({
       </div>
 
       {/* AI Executive Cyber Briefing */}
-      <div className="p-4 rounded-xl bg-[#030907] border border-emerald-500/30 font-mono shadow-xl">
-        <div className="flex items-center justify-between pb-2.5 border-b border-emerald-500/20 mb-3 text-xs">
+      <div className="p-3.5 rounded-xl bg-[#030907] border border-emerald-500/25 font-mono">
+        <div className="flex items-center justify-between pb-2 border-b border-emerald-500/20 mb-2.5 text-xs">
           <div className="flex items-center gap-2 text-emerald-400 font-bold">
-            <Bot className="w-4 h-4 text-emerald-400" />
-            <span>// AI_COPILOT_BRIEFING // TELEMETRY_GROUNDED</span>
+            <Bot className="w-3.5 h-3.5 text-emerald-400" />
+            <span>// TELEMETRY_COPILOT_BRIEFING</span>
           </div>
-          <span className="text-[10px] text-slate-500 font-mono">[FEED: REAL_TIME]</span>
+          <span className="text-[10px] text-slate-500">[FEED: ACTIVE]</span>
         </div>
         
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-3 text-xs">
-          <div className="p-2.5 rounded bg-[#020705] border border-emerald-500/25">
-            <span className="text-[10px] text-slate-400 block font-bold text-emerald-400 mb-1">[01. EXPOSURE_STATUS]</span>
-            <span className="text-slate-300">
-              Total EAL: <strong className="text-emerald-300">{formatRupees(metrics.totalEal)}</strong>. 
-              Over Board appetite by <strong className="text-amber-300">+{formatRupees(Math.max(0, metrics.totalEal - metrics.riskAppetiteLimit))}</strong>. 
-              95% VaR tail loss: <strong className="text-rose-400">{formatRupees(var95)}</strong>.
-            </span>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-2.5 text-xs">
+          <div className="p-2 rounded bg-[#020705] border border-emerald-500/25">
+            <div className="flex justify-between items-center mb-0.5">
+              <span className="text-[10px] font-bold text-emerald-400">[01. EXPOSURE]</span>
+              <span className="text-[10px] text-amber-400 font-bold">+{formatRupees(Math.max(0, metrics.totalEal - metrics.riskAppetiteLimit))} EXCESS</span>
+            </div>
+            <div className="text-base font-black text-white">{formatRupees(metrics.totalEal)} <span className="text-[10px] text-slate-400 font-normal">EAL</span></div>
+            <div className="text-[10px] text-slate-400">95% VaR: {formatRupees(var95)}</div>
           </div>
 
-          <div className="p-2.5 rounded bg-[#020705] border border-amber-500/25">
-            <span className="text-[10px] text-slate-400 block font-bold text-amber-400 mb-1">[02. PRIMARY_DRIVER]</span>
-            <span className="text-slate-300">
-              Weaponized CVE on <strong className="text-amber-300">{metrics.topRiskAssets[0]?.name || 'Fortinet SSL-VPN'}</strong>. 
-              Likelihood: <strong className="text-rose-400">84%</strong> with direct core gateway dependency.
-            </span>
+          <div className="p-2 rounded bg-[#020705] border border-amber-500/25">
+            <div className="flex justify-between items-center mb-0.5">
+              <span className="text-[10px] font-bold text-amber-400">[02. CRITICAL_VECTOR]</span>
+              <span className="text-[10px] text-rose-400 font-bold">84% PROB</span>
+            </div>
+            <div className="text-xs font-bold text-amber-300 truncate">{metrics.topRiskAssets[0]?.name || 'Fortinet SSL-VPN'}</div>
+            <div className="text-[10px] text-slate-400">CVE-2024-21762 (Weaponized RCE)</div>
           </div>
 
-          <div className="p-2.5 rounded bg-[#020705] border border-cyan-500/25">
-            <span className="text-[10px] text-slate-400 block font-bold text-cyan-400 mb-1">[03. OPTIMAL_ACTION]</span>
-            <span className="text-slate-300">
-              Deploy <strong className="text-cyan-300">₹1.00 Cr</strong> Knapsack Plan. 
-              Reduces annual exposure by <strong className="text-emerald-400 font-bold">71%</strong> (down to ₹1.37 Cr), recovering tolerance.
-            </span>
+          <div className="p-2 rounded bg-[#020705] border border-cyan-500/25">
+            <div className="flex justify-between items-center mb-0.5">
+              <span className="text-[10px] font-bold text-cyan-400">[03. KNAPSACK_ACTION]</span>
+              <span className="text-[10px] text-emerald-400 font-bold">-71% RISK</span>
+            </div>
+            <div className="text-base font-black text-cyan-300">₹1.00 Cr <span className="text-[10px] text-slate-400 font-normal">Plan</span></div>
+            <div className="text-[10px] text-emerald-400 font-semibold">Recovers Risk Tolerance</div>
           </div>
         </div>
       </div>

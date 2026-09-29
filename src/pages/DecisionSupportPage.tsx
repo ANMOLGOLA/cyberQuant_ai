@@ -314,25 +314,26 @@ export function DecisionSupportPage({
         </div>
 
         {/* 90-Day Predictive Forecast Chart (5 Cols) */}
-        <div className="lg:col-span-5 p-5 rounded-2xl bg-slate-900/80 border border-slate-800 flex flex-col justify-between h-[520px]">
+        <div className="lg:col-span-5 p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 flex flex-col justify-between h-[520px]">
           <div>
-            <div className="flex items-center justify-between pb-3 border-b border-slate-800">
+            <div className="flex items-center justify-between pb-3 border-b border-emerald-500/20">
               <div>
-                <h2 className="text-xs font-bold text-white">90-Day Exposure Forecast</h2>
-                <span className="text-[10px] text-slate-400 font-mono">
-                  Model: Gradient-boosted trend model (simulated)
+                <h2 className="text-xs font-bold text-white tracking-wider">// 90_DAY_EXPOSURE_FORECAST</h2>
+                <span className="text-[10px] text-slate-500 font-mono">
+                  MODEL: GRADIENT_BOOSTED_DRIFT
                 </span>
               </div>
-              <span className="text-[10px] font-mono text-amber-400 bg-amber-500/10 px-2 py-0.5 rounded border border-amber-500/20">
-                P10 - P90 Band
+              <span className="text-[9px] font-mono text-amber-400 bg-amber-950/60 px-2 py-0.5 rounded border border-amber-500/30">
+                P10 - P90 BAND
               </span>
             </div>
 
-            <p className="text-xs text-slate-300 mt-3 leading-relaxed">
-              If remediation velocity remains at status quo, unpatched CVEs and evolving threat actor weaponization are projected to increase EAL from <strong className="text-cyan-300 font-mono">{formatRupees(metrics.totalEal)}</strong> to <strong className="text-rose-400 font-mono">{formatRupees(metrics.totalEal * 1.39)}</strong> over 90 days.
-            </p>
+            <div className="mt-3 p-2 rounded bg-[#020504] border border-emerald-500/20 flex items-center justify-between text-xs">
+              <span className="text-slate-400 text-[11px]">PROJECTED DRIFT:</span>
+              <span className="font-bold text-rose-400">{formatRupees(metrics.totalEal)} ➔ {formatRupees(metrics.totalEal * 1.39)} (+39%)</span>
+            </div>
 
-            <div className="h-56 w-full mt-4">
+            <div className="h-56 w-full mt-3">
               <ResponsiveContainer width="100%" height="100%">
                 <AreaChart data={forecastData} margin={{ top: 10, right: 10, left: -20, bottom: 0 }}>
                   <defs>
@@ -341,63 +342,63 @@ export function DecisionSupportPage({
                       <stop offset="95%" stopColor="#FF1744" stopOpacity={0.02}/>
                     </linearGradient>
                   </defs>
-                  <XAxis dataKey="day" stroke="#64748B" fontSize={10} tickLine={false} />
-                  <YAxis stroke="#64748B" fontSize={10} tickLine={false} tickFormatter={(v) => `₹${v}Cr`} />
+                  <XAxis dataKey="day" stroke="#475569" fontSize={10} tickLine={false} />
+                  <YAxis stroke="#475569" fontSize={10} tickLine={false} tickFormatter={(v) => `₹${v}Cr`} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#091026', borderColor: '#1E293B', borderRadius: '8px', fontSize: '11px' }}
+                    contentStyle={{ backgroundColor: '#020605', borderColor: '#10B981', borderRadius: '4px', fontSize: '11px', fontFamily: 'monospace' }}
                     formatter={(val: any, name: any) => [`₹${val} Cr`, name]}
                   />
                   <Area type="monotone" dataKey="p90" stroke="#FF1744" strokeWidth={1.5} strokeDasharray="3 3" fillOpacity={1} fill="url(#p90Grad)" name="P90 Worst Case" />
-                  <Area type="monotone" dataKey="p50" stroke="#00E5FF" strokeWidth={2.5} fillOpacity={0} name="P50 Expected Trend" />
+                  <Area type="monotone" dataKey="p50" stroke="#10B981" strokeWidth={2.5} fillOpacity={0} name="P50 Expected Trend" />
                   <Area type="monotone" dataKey="p10" stroke="#00E676" strokeWidth={1.5} strokeDasharray="3 3" fillOpacity={0} name="P10 Best Case" />
                 </AreaChart>
               </ResponsiveContainer>
             </div>
           </div>
 
-          <div className="pt-3 border-t border-slate-800 flex items-center justify-between text-xs text-slate-400 font-mono">
+          <div className="pt-2 border-t border-emerald-500/20 flex items-center justify-between text-[11px] text-slate-400 font-mono">
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-cyan-400" /> Expected (P50)
+              <span className="w-2 h-2 rounded-full bg-emerald-400" /> P50 Expected
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-rose-400" /> Upper Tail (P90)
+              <span className="w-2 h-2 rounded-full bg-rose-400" /> P90 Tail
             </span>
             <span className="flex items-center gap-1.5">
-              <span className="w-2 h-2 rounded-full bg-emerald-400" /> Best Case (P10)
+              <span className="w-2 h-2 rounded-full bg-emerald-500" /> P10 Best
             </span>
           </div>
         </div>
       </div>
 
       {/* Scenario Simulator ("What-If Lab") */}
-      <div className="p-6 rounded-2xl bg-slate-900/70 border border-slate-800 space-y-6">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-4 border-b border-slate-800">
+      <div className="p-4 sm:p-5 rounded-xl bg-[#030907] border border-emerald-500/25 space-y-4">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 pb-3 border-b border-emerald-500/20">
           <div>
             <div className="flex items-center gap-2">
-              <Sliders className="w-5 h-5 text-cyan-400" />
-              <h2 className="text-base font-bold text-white">Scenario Simulator ("What-If Lab")</h2>
+              <Sliders className="w-4 h-4 text-emerald-400" />
+              <h2 className="text-xs font-bold text-white tracking-wider">// WHAT_IF_SCENARIO_SIMULATOR</h2>
             </div>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Modify operational controls and observe instantaneous recalculation of Expected Annual Loss and Risk Score.
+            <p className="text-[10px] text-slate-400 mt-0.5">
+              Test control adjustments with real-time recalculation of Expected Annual Loss & Risk Score.
             </p>
           </div>
 
           <button
             onClick={() => setScenario(defaultScenario)}
-            className="px-3 py-1.5 text-xs text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-lg flex items-center gap-1.5 transition-colors cursor-pointer"
+            className="px-2.5 py-1 text-xs text-slate-300 hover:text-white bg-[#020504] border border-emerald-500/30 rounded flex items-center gap-1.5 transition-colors cursor-pointer"
           >
-            <RotateCcw className="w-3.5 h-3.5" />
-            <span>Reset to Baseline</span>
+            <RotateCcw className="w-3 h-3 text-emerald-400" />
+            <span>[RESET_BASELINE]</span>
           </button>
         </div>
 
         {/* Sliders Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-3">
           {/* Slider 1: MFA */}
-          <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+          <div className="p-3 rounded bg-[#020504] border border-emerald-500/20">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="text-slate-300 font-medium">Privileged MFA Adoption</span>
-              <span className="font-mono font-bold text-cyan-400">{scenario.mfaPrivilegedPercent}%</span>
+              <span className="text-slate-300 font-bold text-[11px]">[PRIVILEGED_MFA]</span>
+              <span className="font-mono font-bold text-emerald-400">{scenario.mfaPrivilegedPercent}%</span>
             </div>
             <input
               type="range"
@@ -406,16 +407,16 @@ export function DecisionSupportPage({
               step="5"
               value={scenario.mfaPrivilegedPercent}
               onChange={(e) => setScenario({ ...scenario, mfaPrivilegedPercent: Number(e.target.value) })}
-              className="w-full accent-cyan-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+              className="w-full accent-emerald-400 cursor-pointer h-1.5 bg-[#030907] rounded"
             />
-            <span className="text-[10px] text-slate-400 block mt-1">Target: 100% on 4,200 admin accounts</span>
+            <span className="text-[9px] text-slate-500 block mt-1">TARGET: 100% ADMINS</span>
           </div>
 
           {/* Slider 2: Patch SLA */}
-          <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+          <div className="p-3 rounded bg-[#020504] border border-emerald-500/20">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="text-slate-300 font-medium">Critical Patch SLA</span>
-              <span className="font-mono font-bold text-violet-400">{scenario.criticalPatchRatePercent}%</span>
+              <span className="text-slate-300 font-bold text-[11px]">[PATCH_SLA_RATE]</span>
+              <span className="font-mono font-bold text-cyan-400">{scenario.criticalPatchRatePercent}%</span>
             </div>
             <input
               type="range"
@@ -424,15 +425,15 @@ export function DecisionSupportPage({
               step="5"
               value={scenario.criticalPatchRatePercent}
               onChange={(e) => setScenario({ ...scenario, criticalPatchRatePercent: Number(e.target.value) })}
-              className="w-full accent-violet-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+              className="w-full accent-cyan-400 cursor-pointer h-1.5 bg-[#030907] rounded"
             />
-            <span className="text-[10px] text-slate-400 block mt-1">SLA &lt; 7 days for CISA KEV CVEs</span>
+            <span className="text-[9px] text-slate-500 block mt-1">SLA: &lt; 7 DAYS CISA KEV</span>
           </div>
 
           {/* Slider 3: Network Segmentation */}
-          <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+          <div className="p-3 rounded bg-[#020504] border border-emerald-500/20">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="text-slate-300 font-medium">VLAN Microsegmentation</span>
+              <span className="text-slate-300 font-bold text-[11px]">[VLAN_ISOLATION]</span>
               <span className="font-mono font-bold text-emerald-400">{scenario.networkSegmentationPercent}%</span>
             </div>
             <input
@@ -442,16 +443,16 @@ export function DecisionSupportPage({
               step="5"
               value={scenario.networkSegmentationPercent}
               onChange={(e) => setScenario({ ...scenario, networkSegmentationPercent: Number(e.target.value) })}
-              className="w-full accent-emerald-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+              className="w-full accent-emerald-400 cursor-pointer h-1.5 bg-[#030907] rounded"
             />
-            <span className="text-[10px] text-slate-400 block mt-1">Isolates UPI & Trading networks</span>
+            <span className="text-[9px] text-slate-500 block mt-1">UPI & TRADING ISOLATION</span>
           </div>
 
           {/* Slider 4: EDR Coverage */}
-          <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+          <div className="p-3 rounded bg-[#020504] border border-emerald-500/20">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="text-slate-300 font-medium">EDR Sensor Coverage</span>
-              <span className="font-mono font-bold text-sky-400">{scenario.edrCoveragePercent}%</span>
+              <span className="text-slate-300 font-bold text-[11px]">[EDR_COVERAGE]</span>
+              <span className="font-mono font-bold text-cyan-400">{scenario.edrCoveragePercent}%</span>
             </div>
             <input
               type="range"
@@ -460,16 +461,16 @@ export function DecisionSupportPage({
               step="5"
               value={scenario.edrCoveragePercent}
               onChange={(e) => setScenario({ ...scenario, edrCoveragePercent: Number(e.target.value) })}
-              className="w-full accent-sky-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+              className="w-full accent-cyan-400 cursor-pointer h-1.5 bg-[#030907] rounded"
             />
-            <span className="text-[10px] text-slate-400 block mt-1">CrowdStrike Falcon on endpoints</span>
+            <span className="text-[9px] text-slate-500 block mt-1">ENDPOINT AGENTS</span>
           </div>
 
           {/* Slider 5: Remediation Delay */}
-          <div className="p-3.5 rounded-xl bg-slate-950/70 border border-slate-800">
+          <div className="p-3 rounded bg-[#020504] border border-emerald-500/20">
             <div className="flex items-center justify-between text-xs mb-1">
-              <span className="text-slate-300 font-medium">Remediation Delay</span>
-              <span className="font-mono font-bold text-amber-400">{scenario.remediationDelayDays} days</span>
+              <span className="text-slate-300 font-bold text-[11px]">[SLA_DELAY]</span>
+              <span className="font-mono font-bold text-amber-400">{scenario.remediationDelayDays}d</span>
             </div>
             <input
               type="range"
@@ -478,9 +479,9 @@ export function DecisionSupportPage({
               step="5"
               value={scenario.remediationDelayDays}
               onChange={(e) => setScenario({ ...scenario, remediationDelayDays: Number(e.target.value) })}
-              className="w-full accent-amber-400 cursor-pointer h-1.5 bg-slate-800 rounded-lg"
+              className="w-full accent-amber-400 cursor-pointer h-1.5 bg-[#030907] rounded"
             />
-            <span className="text-[10px] text-slate-400 block mt-1">Simulates deferring critical fixes</span>
+            <span className="text-[9px] text-slate-500 block mt-1">DRIFT LAG IMPACT</span>
           </div>
         </div>
 
@@ -552,48 +553,47 @@ export function DecisionSupportPage({
 
       {/* AI Mitigation Recommendations */}
       <div>
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex items-center justify-between mb-3">
           <div>
-            <h2 className="text-sm font-bold text-white flex items-center gap-2">
-              <Sparkles className="w-4 h-4 text-cyan-400" />
-              Prioritized Mitigation Initiatives (Ranked by ROSI)
+            <h2 className="text-xs font-bold text-white flex items-center gap-2 tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-emerald-400" />
+              // PRIORITIZED_MITIGATIONS (ROSI_RANKED)
             </h2>
-            <p className="text-xs text-slate-400 mt-0.5">
-              Click "Apply to Simulation" to instantly project financial impact on the What-If lab above
+            <p className="text-[10px] text-slate-400 mt-0.5">
+              Click "Inject Plan" to test instant financial delta on simulation above
             </p>
           </div>
           <button
             onClick={() => onNavigateTab('optimization')}
-            className="text-xs text-cyan-400 hover:underline flex items-center gap-1 font-medium cursor-pointer"
+            className="text-[11px] text-emerald-400 hover:text-emerald-300 flex items-center gap-1 font-bold cursor-pointer"
           >
-            <span>Solve for Fixed Budget in Optimizer</span>
-            <ArrowRight className="w-3.5 h-3.5" />
+            <span>[SOLVE_IN_KNAPSACK]</span>
+            <ArrowRight className="w-3 h-3" />
           </button>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {CANDIDATE_PROJECTS.slice(0, 4).map((p, idx) => (
             <div
               key={p.id}
-              className="p-4 rounded-xl bg-slate-900/70 border border-slate-800 flex flex-col justify-between hover:border-cyan-500/30 transition-colors"
+              className="p-3.5 rounded bg-[#030907] border border-emerald-500/25 flex flex-col justify-between hover:border-emerald-400 transition-colors"
             >
               <div>
-                <div className="flex items-center justify-between mb-1.5">
-                  <span className="text-[10px] font-mono text-cyan-400 font-semibold">{p.category}</span>
-                  <span className="text-[10px] font-mono font-bold text-emerald-400">+{p.rosi.toFixed(0)}% ROSI</span>
+                <div className="flex items-center justify-between mb-1">
+                  <span className="text-[9px] font-mono text-emerald-400 font-bold">[{p.category}]</span>
+                  <span className="text-[10px] font-mono font-bold text-cyan-300">+{p.rosi.toFixed(0)}% ROSI</span>
                 </div>
-                <h3 className="text-xs font-bold text-slate-100 line-clamp-1">{p.title}</h3>
-                <p className="text-[11px] text-slate-400 mt-1 line-clamp-2">{p.description}</p>
+                <h3 className="text-xs font-bold text-slate-100 truncate">{p.title}</h3>
               </div>
 
-              <div className="mt-4 pt-3 border-t border-slate-800 space-y-2">
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-slate-400">Cost:</span>
+              <div className="mt-3 pt-2.5 border-t border-emerald-500/20 space-y-1.5">
+                <div className="flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-slate-500">COST:</span>
                   <span className="text-slate-200">{formatRupees(p.cost)}</span>
                 </div>
-                <div className="flex items-center justify-between text-xs font-mono">
-                  <span className="text-slate-400">Risk Reduction:</span>
-                  <span className="text-emerald-400 font-semibold">{formatRupees(p.riskReduction)}</span>
+                <div className="flex items-center justify-between text-[11px] font-mono">
+                  <span className="text-slate-500">REDUCTION:</span>
+                  <span className="text-emerald-400 font-bold">{formatRupees(p.riskReduction)}</span>
                 </div>
                 <button
                   onClick={() => {
@@ -602,10 +602,10 @@ export function DecisionSupportPage({
                     else if (idx === 2) handleApplyRecToSim('segment');
                     else handleApplyRecToSim('edr');
                   }}
-                  className="w-full mt-2 py-1.5 text-xs font-semibold text-slate-900 bg-cyan-400 hover:bg-cyan-300 rounded-lg transition-colors flex items-center justify-center gap-1 cursor-pointer"
+                  className="w-full mt-1.5 py-1 text-[11px] font-bold text-slate-950 bg-emerald-400 hover:bg-emerald-300 rounded transition-colors flex items-center justify-center gap-1 cursor-pointer"
                 >
-                  <Zap className="w-3 h-3" />
-                  <span>Apply to Simulation</span>
+                  <Zap className="w-3 h-3 text-slate-950" />
+                  <span>[INJECT_PLAN]</span>
                 </button>
               </div>
             </div>
