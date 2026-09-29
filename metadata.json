@@ -1,0 +1,6 @@
+{
+  "name": "CyberQuant AI - Cyber Risk Quantification & Investment Optimization",
+  "description": "AI-Powered Continuous Cyber Risk Quantification and Investment Optimization Platform converting technical telemetry into monetary risk (EAL, VaR95) in Indian Rupees (₹).",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
